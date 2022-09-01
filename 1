@@ -1,0 +1,126 @@
+import 'package:flutter/material.dart';
+
+class TopPage extends StatelessWidget {
+  const TopPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: const [
+          _StoryView(),
+          _TimeLineView(),
+        ],
+      ),
+    );
+  }
+}
+
+class _StoryView extends StatelessWidget {
+  const _StoryView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 120,
+      alignment: Alignment.center,
+      child:SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: List.generate(10, (index) => Padding(
+            padding: index == 0
+                ? const EdgeInsets.symmetric(horizontal: 15.0)
+                : const EdgeInsets.only(right:15.0),
+            child: const _StoryItemView(),
+          )),
+        ),
+      ),
+    );
+  }
+}
+
+class _StoryItemView extends StatelessWidget {
+  const _StoryItemView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CircleAvatar(
+          radius: 35,
+            backgroundImage : AssetImage('assets/IMG_7857.jpg')
+        ),
+        Text('名前')
+      ],
+    );
+  }
+}
+
+
+class _TimeLineView extends StatelessWidget {
+  const _TimeLineView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+          children: List.generate(5, (index) => const _TimeLineView()),
+      );
+  }
+}
+
+class _TimeLineItemView extends StatelessWidget {
+  const _TimeLineItemView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                      radius: 20,
+                      backgroundImage : AssetImage('assets/IMG_7857.jpg')
+                  ),
+                  const SizedBox(width: 10,),
+                  Text('名前'),
+                ],
+              ),
+              Icon(Icons.more_horiz),
+            ],
+          ),
+        ),
+        Container(
+            color: Colors.green,
+            child: Image.asset('assets/IMG_7857.jpg')
+        ),
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.favorite_border),
+                  SizedBox(width: 10,),
+                  Icon(Icons.mode_comment_outlined),
+                  SizedBox(width: 10,),
+                  Icon(Icons.send),
+                ],
+              ),
+              const Icon(Icons.label),
+            ],
+          ),
+        ),
+        Text('メッセージはここに表示されます'),
+      ],
+    );
+  }
+}
+
+
